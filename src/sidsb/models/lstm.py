@@ -33,7 +33,7 @@ class LstmLM:
         self.max_epochs, self.patience, self.holdout = max_epochs, patience, holdout
         self.trace_agg, self.agg_window, self.seed = trace_agg, agg_window, seed
         self.device = ("cuda" if torch.cuda.is_available() else "cpu") if device == "auto" else device
-        self.name = f"lstm_{trace_agg}"
+        self.name = f"lstm_{trace_agg}_s{seed}"
         self.history = []
 
     def _encode(self, seq):
