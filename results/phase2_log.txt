@@ -1,0 +1,68 @@
+train=833 calibration=2186 test=2932 (attacks=746)
+ngram_n3         AUC=0.695  DR@0.01=0.170 (testFPR=0.009)  DR@0.05=0.327 (testFPR=0.055)  [0.4s]
+ngram_n6         AUC=0.827  DR@0.01=0.000 (testFPR=0.000)  DR@0.05=0.216 (testFPR=0.048)  [0.4s]
+rules_median_nr0 AUC=0.562  DR@0.01=0.044 (testFPR=0.011)  DR@0.05=0.135 (testFPR=0.045)  [1.7s]
+    epoch  1  train_nll=2.6877  holdout_nll=2.0274
+    epoch  2  train_nll=1.6534  holdout_nll=1.6201
+    epoch  3  train_nll=1.3795  holdout_nll=1.4650
+    epoch  4  train_nll=1.2472  holdout_nll=1.3597
+    epoch  5  train_nll=1.1595  holdout_nll=1.2985
+    epoch  6  train_nll=1.0960  holdout_nll=1.2463
+    epoch  7  train_nll=1.0445  holdout_nll=1.2085
+    epoch  8  train_nll=1.0031  holdout_nll=1.1722
+    epoch  9  train_nll=0.9700  holdout_nll=1.1427
+    epoch 10  train_nll=0.9359  holdout_nll=1.1230
+    epoch 11  train_nll=0.9121  holdout_nll=1.1053
+    epoch 12  train_nll=0.8879  holdout_nll=1.0863
+    epoch 13  train_nll=0.8676  holdout_nll=1.0729
+    epoch 14  train_nll=0.8505  holdout_nll=1.0592
+    epoch 15  train_nll=0.8351  holdout_nll=1.0527
+    epoch 16  train_nll=0.8200  holdout_nll=1.0420
+    epoch 17  train_nll=0.8077  holdout_nll=1.0337
+    epoch 18  train_nll=0.7925  holdout_nll=1.0306
+    epoch 19  train_nll=0.7829  holdout_nll=1.0219
+    epoch 20  train_nll=0.7713  holdout_nll=1.0189
+    epoch 21  train_nll=0.7609  holdout_nll=1.0126
+    epoch 22  train_nll=0.7520  holdout_nll=1.0112
+    epoch 23  train_nll=0.7460  holdout_nll=1.0046
+    epoch 24  train_nll=0.7350  holdout_nll=1.0035
+    epoch 25  train_nll=0.7275  holdout_nll=0.9982
+    epoch 26  train_nll=0.7193  holdout_nll=1.0004
+    epoch 27  train_nll=0.7133  holdout_nll=0.9973
+    epoch 28  train_nll=0.7065  holdout_nll=0.9971
+    epoch 29  train_nll=0.6993  holdout_nll=0.9909
+    epoch 30  train_nll=0.6935  holdout_nll=0.9903
+lstm_mean        AUC=0.831  DR@0.01=0.115 (testFPR=0.009)  DR@0.05=0.271 (testFPR=0.052)  [147.8s]
+    epoch  1  train_nll=2.6877  holdout_nll=2.0274
+    epoch  2  train_nll=1.6534  holdout_nll=1.6201
+    epoch  3  train_nll=1.3795  holdout_nll=1.4650
+    epoch  4  train_nll=1.2472  holdout_nll=1.3597
+    epoch  5  train_nll=1.1595  holdout_nll=1.2985
+    epoch  6  train_nll=1.0960  holdout_nll=1.2463
+    epoch  7  train_nll=1.0445  holdout_nll=1.2085
+    epoch  8  train_nll=1.0031  holdout_nll=1.1722
+    epoch  9  train_nll=0.9700  holdout_nll=1.1427
+    epoch 10  train_nll=0.9359  holdout_nll=1.1230
+    epoch 11  train_nll=0.9121  holdout_nll=1.1053
+    epoch 12  train_nll=0.8879  holdout_nll=1.0863
+    epoch 13  train_nll=0.8676  holdout_nll=1.0729
+    epoch 14  train_nll=0.8505  holdout_nll=1.0592
+    epoch 15  train_nll=0.8351  holdout_nll=1.0527
+    epoch 16  train_nll=0.8200  holdout_nll=1.0420
+    epoch 17  train_nll=0.8077  holdout_nll=1.0337
+    epoch 18  train_nll=0.7925  holdout_nll=1.0306
+    epoch 19  train_nll=0.7829  holdout_nll=1.0219
+    epoch 20  train_nll=0.7713  holdout_nll=1.0189
+    epoch 21  train_nll=0.7609  holdout_nll=1.0126
+    epoch 22  train_nll=0.7520  holdout_nll=1.0112
+    epoch 23  train_nll=0.7460  holdout_nll=1.0046
+    epoch 24  train_nll=0.7350  holdout_nll=1.0035
+    epoch 25  train_nll=0.7275  holdout_nll=0.9982
+    epoch 26  train_nll=0.7193  holdout_nll=1.0004
+    epoch 27  train_nll=0.7133  holdout_nll=0.9973
+    epoch 28  train_nll=0.7065  holdout_nll=0.9971
+    epoch 29  train_nll=0.6993  holdout_nll=0.9909
+    epoch 30  train_nll=0.6935  holdout_nll=0.9903
+lstm_max_window  AUC=0.630  DR@0.01=0.066 (testFPR=0.011)  DR@0.05=0.185 (testFPR=0.040)  [146.8s]
+
+Wrote results/phase2/metrics.json and results/phase2/results.md

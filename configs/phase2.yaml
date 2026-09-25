@@ -1,0 +1,13 @@
+data_root: data/raw/ADFA-LD
+seed: 42
+calibration_fraction: 0.5
+fpr_targets: [0.01, 0.05]
+models:
+  - {type: ngram, n: 3}
+  - {type: ngram, n: 6}
+  - {type: rules, window: 20, step: 10, min_support: 0.03, min_confidence: 0.8,
+     min_lift: 1.5, top_k: 50, trace_agg: median, no_rule_score: 0.0}
+  - {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+     max_epochs: 30, patience: 4, trace_agg: mean, seed: 42}
+  - {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+     max_epochs: 30, patience: 4, trace_agg: max_window, agg_window: 20, seed: 42}
