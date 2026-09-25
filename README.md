@@ -60,3 +60,23 @@ unzip ADFA-LD.zip -d data/raw/
 
 Rebuilt from a course group project ([Zero-Day-Attack-](https://github.com/saishyamdontha/Zero-Day-Attack-)).
 This repository replaces its evaluation, which tuned thresholds on test data.
+
+## Protocol v2: can fusion beat the best single model?
+
+To choose models without touching test data, attack traces are split **by attack
+run** (3 folders per family for dev, 7 for test), and validation normals are split
+into score-scaling, threshold, dev and test sets. Each model's score is converted
+to a tail probability against held-out normal traces, so models can be fused on a
+common scale (sum or max of -log p). The selection rule was fixed in the config
+before running: best dev detection at 1% FPR, tie-break at 5%.
+
+| Candidate | Dev DR@1% | Test DR@1% (FPR) | Test DR@5% (FPR) | Test AUC |
+|---|---|---|---|---|
+| **3-gram (selected on dev)** | **0.183** | **0.165 (0.010)** | **0.320 (0.057)** | 0.700 |
+| max(3-gram, 6-gram) | 0.183 | 0.165 (0.010) | 0.297 (0.052) | 0.835 |
+| max(3-gram, LSTM) | 0.135 | 0.123 (0.009) | 0.316 (0.059) | 0.830 |
+| LSTM alone | 0.130 | 0.106 (0.007) | 0.305 (0.057) | 0.836 |
+
+**Result:** no fusion of n-grams and LSTM beat the 3-gram at the declared
+operating point. The 3-gram's advantage holds under both protocols
+(v1: 0.170 / 0.327, v2: 0.165 / 0.320). Full table: `results/fusion/results.md`.
