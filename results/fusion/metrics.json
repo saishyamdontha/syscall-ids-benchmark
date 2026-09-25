@@ -1,0 +1,742 @@
+{
+  "chosen": "ngram_n3",
+  "rows": [
+    {
+      "candidate": "ngram_n3",
+      "dev": {
+        "model": "ngram_n3",
+        "auc": 0.6769467303291673,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.772456504239754,
+            "detection_rate": 0.18269230769230768,
+            "test_fpr": 0.011441647597254004,
+            "per_family": {
+              "Adduser": 0.20833333333333334,
+              "Hydra_FTP": 0.23529411764705882,
+              "Hydra_SSH": 0.23076923076923078,
+              "Java_Meterpreter": 0.16666666666666666,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 2.9030228754497234,
+            "detection_rate": 0.3894230769230769,
+            "test_fpr": 0.07208237986270023,
+            "per_family": {
+              "Adduser": 0.375,
+              "Hydra_FTP": 0.39215686274509803,
+              "Hydra_SSH": 0.4358974358974359,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.5263157894736842
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "ngram_n3",
+        "auc": 0.700137015400956,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.772456504239754,
+            "detection_rate": 0.1654275092936803,
+            "test_fpr": 0.009714285714285713,
+            "per_family": {
+              "Adduser": 0.208955223880597,
+              "Hydra_FTP": 0.21621621621621623,
+              "Hydra_SSH": 0.145985401459854,
+              "Java_Meterpreter": 0.18181818181818182,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.1
+            }
+          },
+          "0.05": {
+            "threshold": 2.9030228754497234,
+            "detection_rate": 0.31970260223048325,
+            "test_fpr": 0.05714285714285714,
+            "per_family": {
+              "Adduser": 0.3582089552238806,
+              "Hydra_FTP": 0.40540540540540543,
+              "Hydra_SSH": 0.2773722627737226,
+              "Java_Meterpreter": 0.26136363636363635,
+              "Meterpreter": 0.23636363636363636,
+              "Web_Shell": 0.3625
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "min_p(ngram_n3+ngram_n6)",
+      "dev": {
+        "model": "min_p(ngram_n3+ngram_n6)",
+        "auc": 0.8065261397641261,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.772456504239754,
+            "detection_rate": 0.18269230769230768,
+            "test_fpr": 0.011441647597254004,
+            "per_family": {
+              "Adduser": 0.20833333333333334,
+              "Hydra_FTP": 0.23529411764705882,
+              "Hydra_SSH": 0.23076923076923078,
+              "Java_Meterpreter": 0.16666666666666666,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 3.3402366818724682,
+            "detection_rate": 0.3125,
+            "test_fpr": 0.06521739130434782,
+            "per_family": {
+              "Adduser": 0.2916666666666667,
+              "Hydra_FTP": 0.37254901960784315,
+              "Hydra_SSH": 0.3076923076923077,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.3157894736842105
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "min_p(ngram_n3+ngram_n6)",
+        "auc": 0.8348045671800319,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.772456504239754,
+            "detection_rate": 0.1654275092936803,
+            "test_fpr": 0.009714285714285713,
+            "per_family": {
+              "Adduser": 0.208955223880597,
+              "Hydra_FTP": 0.21621621621621623,
+              "Hydra_SSH": 0.145985401459854,
+              "Java_Meterpreter": 0.18181818181818182,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.1
+            }
+          },
+          "0.05": {
+            "threshold": 3.3402366818724682,
+            "detection_rate": 0.29739776951672864,
+            "test_fpr": 0.052,
+            "per_family": {
+              "Adduser": 0.31343283582089554,
+              "Hydra_FTP": 0.40540540540540543,
+              "Hydra_SSH": 0.27007299270072993,
+              "Java_Meterpreter": 0.2159090909090909,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.325
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "min_p(ngram_n3+lstm_mean_s42)",
+      "dev": {
+        "model": "min_p(ngram_n3+lstm_mean_s42)",
+        "auc": 0.8064683814469283,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 5.031691237463924,
+            "detection_rate": 0.1346153846153846,
+            "test_fpr": 0.011441647597254004,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.17647058823529413,
+              "Hydra_SSH": 0.1794871794871795,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 3.132080419662249,
+            "detection_rate": 0.34615384615384615,
+            "test_fpr": 0.07437070938215103,
+            "per_family": {
+              "Adduser": 0.3333333333333333,
+              "Hydra_FTP": 0.37254901960784315,
+              "Hydra_SSH": 0.38461538461538464,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.39473684210526316
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "min_p(ngram_n3+lstm_mean_s42)",
+        "auc": 0.8300047796070101,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 5.031691237463924,
+            "detection_rate": 0.12267657992565056,
+            "test_fpr": 0.009142857142857144,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.11678832116788321,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 3.132080419662249,
+            "detection_rate": 0.3159851301115242,
+            "test_fpr": 0.05885714285714286,
+            "per_family": {
+              "Adduser": 0.31343283582089554,
+              "Hydra_FTP": 0.40540540540540543,
+              "Hydra_SSH": 0.291970802919708,
+              "Java_Meterpreter": 0.23863636363636365,
+              "Meterpreter": 0.23636363636363636,
+              "Web_Shell": 0.375
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "fisher(ngram_n3+ngram_n6)",
+      "dev": {
+        "model": "fisher(ngram_n3+ngram_n6)",
+        "auc": 0.7901970383735257,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 8.798778014842851,
+            "detection_rate": 0.1346153846153846,
+            "test_fpr": 0.016018306636155607,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1794871794871795,
+              "Java_Meterpreter": 0.05555555555555555,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 5.6049873188459385,
+            "detection_rate": 0.32211538461538464,
+            "test_fpr": 0.07437070938215103,
+            "per_family": {
+              "Adduser": 0.2916666666666667,
+              "Hydra_FTP": 0.35294117647058826,
+              "Hydra_SSH": 0.3333333333333333,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.3684210526315789
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "fisher(ngram_n3+ngram_n6)",
+        "auc": 0.8177615507169411,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 8.798778014842851,
+            "detection_rate": 0.13568773234200743,
+            "test_fpr": 0.012571428571428572,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.22522522522522523,
+              "Hydra_SSH": 0.11678832116788321,
+              "Java_Meterpreter": 0.09090909090909091,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.1125
+            }
+          },
+          "0.05": {
+            "threshold": 5.6049873188459385,
+            "detection_rate": 0.3104089219330855,
+            "test_fpr": 0.05828571428571429,
+            "per_family": {
+              "Adduser": 0.31343283582089554,
+              "Hydra_FTP": 0.40540540540540543,
+              "Hydra_SSH": 0.291970802919708,
+              "Java_Meterpreter": 0.22727272727272727,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.3625
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "min_p(ngram_n3+ngram_n6+lstm_mean_s42)",
+      "dev": {
+        "model": "min_p(ngram_n3+ngram_n6+lstm_mean_s42)",
+        "auc": 0.8016661899313502,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 5.031691237463924,
+            "detection_rate": 0.1346153846153846,
+            "test_fpr": 0.011441647597254004,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.17647058823529413,
+              "Hydra_SSH": 0.1794871794871795,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 3.5590381610684374,
+            "detection_rate": 0.3076923076923077,
+            "test_fpr": 0.06636155606407322,
+            "per_family": {
+              "Adduser": 0.2916666666666667,
+              "Hydra_FTP": 0.35294117647058826,
+              "Hydra_SSH": 0.3076923076923077,
+              "Java_Meterpreter": 0.2222222222222222,
+              "Meterpreter": 0.25,
+              "Web_Shell": 0.3684210526315789
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "min_p(ngram_n3+ngram_n6+lstm_mean_s42)",
+        "auc": 0.8297302177376527,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 5.031691237463924,
+            "detection_rate": 0.12267657992565056,
+            "test_fpr": 0.009142857142857144,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.11678832116788321,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 3.5590381610684374,
+            "detection_rate": 0.29182156133828996,
+            "test_fpr": 0.053142857142857144,
+            "per_family": {
+              "Adduser": 0.2835820895522388,
+              "Hydra_FTP": 0.3963963963963964,
+              "Hydra_SSH": 0.2846715328467153,
+              "Java_Meterpreter": 0.2159090909090909,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.3
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "lstm_mean_s42",
+      "dev": {
+        "model": "lstm_mean_s42",
+        "auc": 0.8149368509065306,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.608800728648617,
+            "detection_rate": 0.12980769230769232,
+            "test_fpr": 0.008009153318077803,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1282051282051282,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 2.810598841045234,
+            "detection_rate": 0.34134615384615385,
+            "test_fpr": 0.07322654462242563,
+            "per_family": {
+              "Adduser": 0.25,
+              "Hydra_FTP": 0.37254901960784315,
+              "Hydra_SSH": 0.4358974358974359,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.2,
+              "Web_Shell": 0.42105263157894735
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "lstm_mean_s42",
+        "auc": 0.8361194901752523,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.608800728648617,
+            "detection_rate": 0.10594795539033457,
+            "test_fpr": 0.006857142857142857,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.051094890510948905,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 2.810598841045234,
+            "detection_rate": 0.3048327137546468,
+            "test_fpr": 0.05657142857142857,
+            "per_family": {
+              "Adduser": 0.19402985074626866,
+              "Hydra_FTP": 0.3963963963963964,
+              "Hydra_SSH": 0.35766423357664234,
+              "Java_Meterpreter": 0.2159090909090909,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.3375
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "fisher(ngram_n3+lstm_mean_s42)",
+      "dev": {
+        "model": "fisher(ngram_n3+lstm_mean_s42)",
+        "auc": 0.7923808528428093,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 9.747852954024966,
+            "detection_rate": 0.12980769230769232,
+            "test_fpr": 0.011441647597254004,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1282051282051282,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 5.945598232336277,
+            "detection_rate": 0.34134615384615385,
+            "test_fpr": 0.06979405034324943,
+            "per_family": {
+              "Adduser": 0.2916666666666667,
+              "Hydra_FTP": 0.35294117647058826,
+              "Hydra_SSH": 0.41025641025641024,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.39473684210526316
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "fisher(ngram_n3+lstm_mean_s42)",
+        "auc": 0.8135400955921402,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 9.747852954024966,
+            "detection_rate": 0.11338289962825279,
+            "test_fpr": 0.008,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.08029197080291971,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 5.945598232336277,
+            "detection_rate": 0.31226765799256506,
+            "test_fpr": 0.05771428571428571,
+            "per_family": {
+              "Adduser": 0.31343283582089554,
+              "Hydra_FTP": 0.40540540540540543,
+              "Hydra_SSH": 0.291970802919708,
+              "Java_Meterpreter": 0.22727272727272727,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.375
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "min_p(ngram_n6+lstm_mean_s42)",
+      "dev": {
+        "model": "min_p(ngram_n6+lstm_mean_s42)",
+        "auc": 0.8047933902481957,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.608800728648617,
+            "detection_rate": 0.12980769230769232,
+            "test_fpr": 0.008009153318077803,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1282051282051282,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 3.288486405424495,
+            "detection_rate": 0.23076923076923078,
+            "test_fpr": 0.07322654462242563,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.3137254901960784,
+              "Hydra_SSH": 0.3333333333333333,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.2631578947368421
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "min_p(ngram_n6+lstm_mean_s42)",
+        "auc": 0.8330584174190123,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.608800728648617,
+            "detection_rate": 0.10594795539033457,
+            "test_fpr": 0.006857142857142857,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.051094890510948905,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 3.288486405424495,
+            "detection_rate": 0.23234200743494424,
+            "test_fpr": 0.052571428571428575,
+            "per_family": {
+              "Adduser": 0.13432835820895522,
+              "Hydra_FTP": 0.3333333333333333,
+              "Hydra_SSH": 0.291970802919708,
+              "Java_Meterpreter": 0.10227272727272728,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.2875
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "fisher(ngram_n3+ngram_n6+lstm_mean_s42)",
+      "dev": {
+        "model": "fisher(ngram_n3+ngram_n6+lstm_mean_s42)",
+        "auc": 0.7991385759549375,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 13.85676417175145,
+            "detection_rate": 0.125,
+            "test_fpr": 0.010297482837528604,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1282051282051282,
+              "Java_Meterpreter": 0.05555555555555555,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 8.571657776718817,
+            "detection_rate": 0.3317307692307692,
+            "test_fpr": 0.07437070938215103,
+            "per_family": {
+              "Adduser": 0.2916666666666667,
+              "Hydra_FTP": 0.35294117647058826,
+              "Hydra_SSH": 0.38461538461538464,
+              "Java_Meterpreter": 0.25,
+              "Meterpreter": 0.3,
+              "Web_Shell": 0.3684210526315789
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "fisher(ngram_n3+ngram_n6+lstm_mean_s42)",
+        "auc": 0.8256255974508762,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 13.85676417175145,
+            "detection_rate": 0.10780669144981413,
+            "test_fpr": 0.006285714285714286,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.058394160583941604,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 8.571657776718817,
+            "detection_rate": 0.3066914498141264,
+            "test_fpr": 0.05771428571428571,
+            "per_family": {
+              "Adduser": 0.2835820895522388,
+              "Hydra_FTP": 0.3963963963963964,
+              "Hydra_SSH": 0.30656934306569344,
+              "Java_Meterpreter": 0.2159090909090909,
+              "Meterpreter": 0.21818181818181817,
+              "Web_Shell": 0.3625
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "fisher(ngram_n6+lstm_mean_s42)",
+      "dev": {
+        "model": "fisher(ngram_n6+lstm_mean_s42)",
+        "auc": 0.8063006072874493,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 8.844739011754635,
+            "detection_rate": 0.125,
+            "test_fpr": 0.010297482837528604,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.19607843137254902,
+              "Hydra_SSH": 0.1282051282051282,
+              "Java_Meterpreter": 0.05555555555555555,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.07894736842105263
+            }
+          },
+          "0.05": {
+            "threshold": 5.689242989847762,
+            "detection_rate": 0.25961538461538464,
+            "test_fpr": 0.07894736842105263,
+            "per_family": {
+              "Adduser": 0.16666666666666666,
+              "Hydra_FTP": 0.3333333333333333,
+              "Hydra_SSH": 0.358974358974359,
+              "Java_Meterpreter": 0.1388888888888889,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.2894736842105263
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "fisher(ngram_n6+lstm_mean_s42)",
+        "auc": 0.835567180031864,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 8.844739011754635,
+            "detection_rate": 0.10594795539033457,
+            "test_fpr": 0.006285714285714286,
+            "per_family": {
+              "Adduser": 0.11940298507462686,
+              "Hydra_FTP": 0.1891891891891892,
+              "Hydra_SSH": 0.051094890510948905,
+              "Java_Meterpreter": 0.07954545454545454,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.0875
+            }
+          },
+          "0.05": {
+            "threshold": 5.689242989847762,
+            "detection_rate": 0.23977695167286245,
+            "test_fpr": 0.05828571428571429,
+            "per_family": {
+              "Adduser": 0.13432835820895522,
+              "Hydra_FTP": 0.3333333333333333,
+              "Hydra_SSH": 0.291970802919708,
+              "Java_Meterpreter": 0.125,
+              "Meterpreter": 0.12727272727272726,
+              "Web_Shell": 0.3125
+            }
+          }
+        }
+      }
+    },
+    {
+      "candidate": "ngram_n6",
+      "dev": {
+        "model": "ngram_n6",
+        "auc": 0.7984619785249076,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.471638793363569,
+            "detection_rate": 0.0,
+            "test_fpr": 0.0,
+            "per_family": {
+              "Adduser": 0.0,
+              "Hydra_FTP": 0.0,
+              "Hydra_SSH": 0.0,
+              "Java_Meterpreter": 0.0,
+              "Meterpreter": 0.0,
+              "Web_Shell": 0.0
+            }
+          },
+          "0.05": {
+            "threshold": 2.8824035882469876,
+            "detection_rate": 0.20673076923076922,
+            "test_fpr": 0.06750572082379863,
+            "per_family": {
+              "Adduser": 0.125,
+              "Hydra_FTP": 0.3333333333333333,
+              "Hydra_SSH": 0.3076923076923077,
+              "Java_Meterpreter": 0.08333333333333333,
+              "Meterpreter": 0.15,
+              "Web_Shell": 0.13157894736842105
+            }
+          }
+        }
+      },
+      "test": {
+        "model": "ngram_n6",
+        "auc": 0.8338305894848645,
+        "at_fpr": {
+          "0.01": {
+            "threshold": 4.471638793363569,
+            "detection_rate": 0.0,
+            "test_fpr": 0.0,
+            "per_family": {
+              "Adduser": 0.0,
+              "Hydra_FTP": 0.0,
+              "Hydra_SSH": 0.0,
+              "Java_Meterpreter": 0.0,
+              "Meterpreter": 0.0,
+              "Web_Shell": 0.0
+            }
+          },
+          "0.05": {
+            "threshold": 2.8824035882469876,
+            "detection_rate": 0.22490706319702602,
+            "test_fpr": 0.045142857142857144,
+            "per_family": {
+              "Adduser": 0.14925373134328357,
+              "Hydra_FTP": 0.32432432432432434,
+              "Hydra_SSH": 0.27007299270072993,
+              "Java_Meterpreter": 0.11363636363636363,
+              "Meterpreter": 0.14545454545454545,
+              "Web_Shell": 0.25
+            }
+          }
+        }
+      }
+    }
+  ]
+}
