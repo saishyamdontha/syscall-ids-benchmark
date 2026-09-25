@@ -1,0 +1,6 @@
+numpy>=1.26,<3
+pandas>=2.1
+scikit-learn>=1.4,<2
+mlxtend==0.25.0
+pyyaml>=6
+pytest>=8
