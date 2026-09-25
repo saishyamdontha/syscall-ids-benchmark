@@ -19,3 +19,14 @@ def test_unseen_syscall_is_surprising():
     m = LstmLM(emb=8, hidden=16, layers=1, chunk=20, stride=10, max_epochs=10,
                patience=10, device="cpu").fit(normal)
     assert m.token_nll([1, 2, 999, 2, 3])[1] > m.token_nll([1, 2, 3, 1, 2])[1]
+
+
+def test_batched_score_matches_single():
+    rng = np.random.default_rng(1)
+    normal = [list(rng.integers(1, 6, rng.integers(30, 80))) for _ in range(30)]
+    for agg in ("mean", "max_window"):
+        m = LstmLM(emb=8, hidden=16, layers=1, chunk=20, stride=10, max_epochs=2,
+                   patience=2, trace_agg=agg, device="cpu").fit(normal)
+        test = normal[:10] + [[3], [], list(rng.integers(1, 9, 57))]
+        single = np.array([m.score_one(s) for s in test])
+        assert np.allclose(m.score(test, batch_size=4), single, atol=1e-5)

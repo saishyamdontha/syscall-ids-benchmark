@@ -79,6 +79,8 @@ class LstmLM:
 
     def fit(self, seqs):
         torch.manual_seed(self.seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
         self.rng = np.random.default_rng(self.seed)
         syscalls = sorted({s for seq in seqs for s in seq})
         self.vocab = {s: i + 2 for i, s in enumerate(syscalls)}
@@ -122,8 +124,7 @@ class LstmLM:
         logp = torch.log_softmax(self.net(x)[0], dim=-1)
         return (-logp[torch.arange(len(y)), y]).cpu().numpy()
 
-    def score_one(self, seq):
-        nll = self.token_nll(seq)
+    def _aggregate(self, nll):
         if nll.size == 0:
             return 0.0
         if self.trace_agg == "mean":
@@ -133,5 +134,25 @@ class LstmLM:
             return float(np.convolve(nll, np.ones(w) / w, mode="valid").max())
         raise ValueError(self.trace_agg)
 
-    def score(self, seqs):
-        return np.array([self.score_one(s) for s in seqs], dtype=float)
+    def score_one(self, seq):
+        return self._aggregate(self.token_nll(seq))
+
+    @torch.no_grad()
+    def score(self, seqs, batch_size=64):
+        """Batched scoring: traces sorted by length, right-padded. Padding at the
+        end cannot affect earlier predictions of a left-to-right LSTM."""
+        self.net.eval()
+        enc = [self._encode(s) for s in seqs]
+        out = np.zeros(len(seqs), dtype=float)
+        order = [i for i in sorted(range(len(enc)), key=lambda i: len(enc[i])) if len(enc[i]) >= 2]
+        for b in range(0, len(order), batch_size):
+            idxs = order[b:b + batch_size]
+            x = self._pad([enc[i] for i in idxs]).to(self.device)
+            inp, tgt = x[:, :-1], x[:, 1:]
+            logp = torch.log_softmax(self.net(inp), dim=-1)
+            nll = (-logp.gather(2, tgt.unsqueeze(-1)).squeeze(-1)).cpu().numpy()
+            mask = (tgt != PAD).cpu().numpy()
+            for row, i in enumerate(idxs):
+                out[i] = self._aggregate(nll[row][mask[row]])
+        return out
+
