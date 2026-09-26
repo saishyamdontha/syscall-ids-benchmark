@@ -114,37 +114,3 @@ Limitation: ADFA-LD attack traces have no attack start time, so "syscalls to ala
 is counted from the start of the trace. Streaming LSTM results were produced with
 torch 2.11.0+cu128 on an NVIDIA RTX 2000 Ada. Full tables:
 `results/gpu/stream/results.md`, `results/gpu/stream_seeds/results.md`.
-
-## Real-time (streaming) detection
-
-Each trace is replayed one syscall at a time. The running score is the mean of the
-last W per-syscall items (3-gram: was this 3-gram unseen in training? LSTM: surprise
-of this syscall). An alarm fires the first time the running score crosses a
-threshold. The threshold is set on the **peak** running score of calibration normal
-traces, so "1%" means at most 1% of normal traces *ever* alarm. W is chosen per model
-on the dev split (W in {10, 20, 50, 100, 200}, rule declared in the config).
-
-| Model (test, protocol v2 splits) | Detection @1% | Detection @5% | Syscalls/s, one at a time |
-|---|---|---|---|
-| **3-gram** (W=200) | **0.151** | **0.301** | ~1,500,000 (CPU) |
-| LSTM, 3 seeds | 0.121 ± 0.044 | 0.259 ± 0.029 | ~4,000 (GPU) |
-| 6-gram (W=200) | 0.000 | 0.206 | ~1,400,000 (CPU) |
-
-**Findings**
-
-- **The 3-gram is the better real-time detector here:** higher detection at both
-  operating points, deterministic, and ~400x faster per syscall. The LSTM's
-  dev-selected window varied across seeds (W=200, 20, 200) and its detection with it.
-- **Detection vs delay:** alarms fire as soon as W syscalls are available, so W sets
-  the delay. On dev, the 3-gram at W=50 catches 0.149 of attacks at a median of 61
-  syscalls, versus 0.173 at 202 syscalls with W=200: 86% of the detection, ~3x sooner.
-- **Short windows calibrate poorly:** with W=20 (one LSTM seed), 1.7% of test normal
-  traces alarmed against a 1% target.
-- **GPU does little for streaming:** scoring one syscall at a time is dominated by
-  per-call overhead. Batching the next syscall of many processes into one call is
-  the way to use a GPU in deployment (not implemented).
-
-Limitation: ADFA-LD attack traces have no attack start time, so "syscalls to alarm"
-is counted from the start of the trace. Streaming LSTM results were produced with
-torch 2.11.0+cu128 on an NVIDIA RTX 2000 Ada. Full tables:
-`results/gpu/stream/results.md`, `results/gpu/stream_seeds/results.md`.
