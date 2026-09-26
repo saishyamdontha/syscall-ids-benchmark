@@ -1,0 +1,8 @@
+data_root: data/raw/ADFA-LD
+syscall_table: data/raw/syscall_32.tbl
+seed: 42
+dev_folders_per_family: 3
+n: 3
+window: 200          # the W chosen on dev for the 3-gram in the streaming study
+fpr: 0.01            # alarm threshold: <=1% of calibration normal traces ever alarm
+top_k: 3
