@@ -1,0 +1,16 @@
+data_root: data/raw/ADFA-LD
+seed: 42
+dev_folders_per_family: 3
+fpr_targets: [0.01, 0.05]
+windows: [10, 20, 50, 100, 200]
+selection_metric: "0.01"
+tiebreak_metric: "0.05"
+models:
+  - {type: ngram, n: 3}
+  - {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+     max_epochs: 100, patience: 6, trace_agg: mean, seed: 42}
+  - {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+     max_epochs: 100, patience: 6, trace_agg: mean, seed: 43}
+  - {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+     max_epochs: 100, patience: 6, trace_agg: mean, seed: 44}
+throughput_syscalls: 3000
