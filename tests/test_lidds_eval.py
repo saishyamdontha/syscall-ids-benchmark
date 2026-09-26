@@ -29,7 +29,7 @@ def test_normal_recording_alarm_counts_as_false_alarm():
 
 
 def test_splits_disjoint_and_complete():
-    mk = lambda i, sp, fam: Recording(str(i), sp, fam, [1], np.array([0]))
+    mk = lambda i, sp, fam: Recording(str(i), sp, fam, [1], np.array([0]), 0 if fam == "attack" else -1)
     recs = ([mk(i, "training", "normal") for i in range(5)] + [mk(100 + i, "validation", "normal") for i in range(3)]
             + [mk(200 + i, "test/normal", "normal") for i in range(50)]
             + [mk(300 + i, "test/normal_and_attack", "attack") for i in range(10)])
@@ -45,3 +45,12 @@ def test_evaluate_counts():
     trajs = [(np.array([0.1, 0.9]), np.array([4, 8]))]
     r = evaluate_lidds(np.zeros(100), [good], trajs, [0.05])["0.05"]
     assert r["detection_rate"] == 1.0 and r["attacks_with_pre_exploit_alarm"] == 1.0
+
+
+def test_attack_without_exploit_time_is_excluded():
+    recs = [Recording("n", "test/normal", "normal", [1], np.array([0])),
+            Recording("a", "test/normal_and_attack", "attack", [1], np.array([0]), 0),
+            Recording("x", "test/normal_and_attack", "attack", [1], np.array([0]), -1)]
+    sp = make_lidds_splits(recs, seed=0)
+    names = {r.name for k in ("dev", "test") for r in sp[k]}
+    assert "a" in names and "x" not in names

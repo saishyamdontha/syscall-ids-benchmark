@@ -11,7 +11,7 @@ def make_lidds_splits(recs, seed, cal_frac=0.4, dev_frac=0.2, attack_dev_frac=0.
     rng = np.random.default_rng(seed)
     by = lambda s: [r for r in recs if r.split == s]
     tn = by("test/normal")
-    ta = by("test/normal_and_attack")
+    ta = [r for r in by("test/normal_and_attack") if r.attack_pos >= 0]   # need an exploit time
     tn = [tn[i] for i in rng.permutation(len(tn))]
     ta = [ta[i] for i in rng.permutation(len(ta))]
     a, b = int(len(tn) * cal_frac), int(len(tn) * (cal_frac + dev_frac))

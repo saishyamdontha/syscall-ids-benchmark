@@ -1,0 +1,16 @@
+# Multi-scenario LID-DS 2021 run. Declared BEFORE looking at any result beyond Heartbleed.
+data_dir: data/raw/lidds
+out_dir: results/lidds_all
+seed: 42
+fpr_targets: [0.01, 0.05]
+windows: [10, 20, 50, 100, 200]
+selection_metric: "0.01"
+tiebreak_metric: "0.05"
+modes: [per_thread, interleaved]
+lstm_max_zip_gb: 5.0        # LSTM only on scenario zips up to this size (compute budget, fixed in advance)
+ngram_models:
+  - {type: ngram, n: 3}
+  - {type: ngram, n: 6}
+  - {type: ngram_lm, n: 3, k: 0.1}
+lstm_model: {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+             max_epochs: 100, patience: 6, trace_agg: mean, seed: 42}
