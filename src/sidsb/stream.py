@@ -25,6 +25,8 @@ from .models.ngram import NgramUnseen
 
 def ngram_items(model: NgramUnseen, seq):
     """Unseen-flags per n-gram and the syscall count consumed when each is known."""
+    if hasattr(model, "items"):
+        return model.items(seq)
     n = model.n
     if len(seq) < n:
         return np.zeros(0), np.zeros(0, dtype=int)

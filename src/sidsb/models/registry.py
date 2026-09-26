@@ -1,5 +1,10 @@
 from .ngram import NgramUnseen
-from .rules import RuleViolation
+from .ngram_lm import NgramLM
+
+
+def _rules(**kw):
+    from .rules import RuleViolation
+    return RuleViolation(**kw)
 
 
 def _lstm(**kw):
@@ -7,7 +12,7 @@ def _lstm(**kw):
     return LstmLM(**kw)
 
 
-MODELS = {"ngram": NgramUnseen, "rules": RuleViolation, "lstm": _lstm}
+MODELS = {"ngram": NgramUnseen, "ngram_lm": NgramLM, "rules": _rules, "lstm": _lstm}
 
 
 def build(spec):

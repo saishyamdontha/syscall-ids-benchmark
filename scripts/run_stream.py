@@ -23,7 +23,8 @@ def items_for(model, seqs):
 
 
 def throughput(model, seq, window):
-    stream = (NgramStream if model.name.startswith("ngram") else LstmStream)(model, window)
+    stream = (model.stream(window) if hasattr(model, "stream") else
+              (NgramStream if model.name.startswith("ngram") else LstmStream)(model, window))
     t0 = time.perf_counter()
     for s in seq:
         stream.update(s)

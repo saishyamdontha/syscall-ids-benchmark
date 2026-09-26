@@ -1,0 +1,13 @@
+data_root: data/raw/ADFA-LD
+seed: 42
+dev_folders_per_family: 3
+fpr_targets: [0.01, 0.05]
+# Declared BEFORE looking at any result for this model (same grid as the streaming study):
+windows: [10, 20, 50, 100, 200]
+selection_metric: "0.01"
+tiebreak_metric: "0.05"
+models:
+  - {type: ngram, n: 3}
+  - {type: ngram_lm, n: 3, k: 0.1}
+  - {type: ngram_lm, n: 4, k: 0.1}
+throughput_syscalls: 3000
