@@ -1,0 +1,11 @@
+Share of syscalls inside the evidence 3-grams of attack alerts:
+  _newselect     0.166
+  clock_gettime  0.147
+  read           0.100
+  nanosleep      0.096
+  setitimer      0.076
+  wait4          0.065
+Fraction of test traces containing the syscall at least once (attack vs normal):
+  execve         attack=0.09  normal=0.64
+  socketcall     attack=0.39  normal=0.59
+  setuid32       attack=0.00  normal=0.04
