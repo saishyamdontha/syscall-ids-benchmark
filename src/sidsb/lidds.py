@@ -24,6 +24,7 @@ class Recording:
     ts: np.ndarray = field(repr=False)   # ns timestamp per syscall in seq
     attack_pos: int = -1   # index of first syscall at/after exploit start (-1: none)
     exploit_ns: int = -1
+    tids: np.ndarray = field(default=None, repr=False)   # thread id per syscall in seq
 
 
 def _split_of(path):
@@ -34,27 +35,29 @@ def _split_of(path):
 def parse_recording(inner_bytes, base, vocab):
     inner = zipfile.ZipFile(io.BytesIO(inner_bytes))
     meta = json.loads(inner.read(base + ".json").decode().replace("'", '"'))
-    seq, ts = [], []
+    seq, ts, tids = [], [], []
     for line in inner.read(base + ".sc").decode(errors="replace").splitlines():
         f = line.split(" ", 7)
         if len(f) < 7 or f[6] != ">":
             continue
         seq.append(vocab.setdefault(f[5], len(vocab) + 1))
         ts.append(int(f[0]))
+        tids.append(int(f[4]))
     ts = np.array(ts, dtype=np.int64)
+    tids = np.array(tids, dtype=np.int64)
     exploits = meta.get("time", {}).get("exploit") or []
     exploit_ns, attack_pos = -1, -1
     if meta.get("exploit") and exploits:
         exploit_ns = int(round(min(e["absolute"] for e in exploits) * 1e9))
         attack_pos = int(np.searchsorted(ts, exploit_ns, side="left"))
-    return seq, ts, exploit_ns, attack_pos, bool(meta.get("exploit"))
+    return seq, ts, tids, exploit_ns, attack_pos, bool(meta.get("exploit"))
 
 
 def load_scenario(zip_path, cache_dir="data/cache"):
     """Return (recordings, vocab). Parsed result is cached next to the data."""
     zip_path = Path(zip_path)
     st = zip_path.stat()
-    cache = Path(cache_dir) / f"{zip_path.stem}_{st.st_size}.pkl"
+    cache = Path(cache_dir) / f"{zip_path.stem}_{st.st_size}_v2.pkl"
     if cache.exists():
         return pickle.loads(cache.read_bytes())
     outer = zipfile.ZipFile(zip_path)
@@ -63,9 +66,9 @@ def load_scenario(zip_path, cache_dir="data/cache"):
     vocab, recs = {}, []
     for n in names:
         base = n.rsplit("/", 1)[1][:-4]
-        seq, ts, exploit_ns, attack_pos, is_attack = parse_recording(outer.read(n), base, vocab)
+        seq, ts, tids, exploit_ns, attack_pos, is_attack = parse_recording(outer.read(n), base, vocab)
         recs.append(Recording(base, _split_of(n), "attack" if is_attack else "normal",
-                              seq, ts, attack_pos, exploit_ns))
+                              seq, ts, attack_pos, exploit_ns, tids))
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_bytes(pickle.dumps((recs, vocab)))
     return recs, vocab

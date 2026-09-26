@@ -10,6 +10,7 @@ from sidsb.lidds import load_scenario
 from sidsb.lidds_eval import evaluate_lidds, make_lidds_splits
 from sidsb.models.registry import build
 from sidsb.stream import lstm_items_batch, ngram_items, peak, trajectory
+from sidsb.threads import per_thread_items, thread_training_seqs
 
 
 def fmt(v, spec=".3f"):
@@ -28,6 +29,7 @@ def main():
 
     recs, vocab = load_scenario(cfg["scenario_zip"])
     sp = make_lidds_splits(recs, cfg["seed"])
+    per_thread = bool(cfg.get("per_thread", False))
     print(f"{scen}: " + " ".join(f"{k}={len(v)}" for k, v in sp.items()),
           f"(dev attacks={sum(r.family == 'attack' for r in sp['dev'])},",
           f"test attacks={sum(r.family == 'attack' for r in sp['test'])})")
@@ -36,12 +38,11 @@ def main():
     for spec in cfg["models"]:
         m = build(spec)
         print(f"fitting {m.name} ...", flush=True)
-        m.fit([r.seq for r in sp["train"]])
-        items = {}
-        for k in ("cal", "dev", "test"):
-            seqs = [r.seq for r in sp[k]]
-            items[k] = ([ngram_items(m, s) for s in seqs] if m.name.startswith("ngram")
-                        else lstm_items_batch(m, seqs))
+        m.fit(thread_training_seqs(sp["train"]) if per_thread else [r.seq for r in sp["train"]])
+        fn = ((lambda seqs, m=m: [ngram_items(m, s) for s in seqs]) if m.name.startswith("ngram")
+              else (lambda seqs, m=m: lstm_items_batch(m, seqs)))
+        items = {k: (per_thread_items(sp[k], fn) if per_thread else fn([r.seq for r in sp[k]]))
+                 for k in ("cal", "dev", "test")}
         results = []
         for w in cfg["windows"]:
             traj = {k: [trajectory(i, p, w) for i, p in v] for k, v in items.items()}
@@ -67,7 +68,7 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     (out / "metrics.json").write_text(json.dumps(
         {"test": report, "dev": [{"model": n, "window": w, "dev": d} for n, w, d in dev_rows]}, indent=2))
-    L = [f"LID-DS 2021 / {scen}. Alarm = first time the running mean of the last W items exceeds a",
+    L = [f"LID-DS 2021 / {scen} ({'per-thread context' if per_thread else 'threads interleaved'}). Alarm = first time the running mean of the last W items exceeds a",
          "threshold set on calibration normal recordings. Alarms before the exploit count as false alarms;",
          "detection = first alarm after the exploit starts; delay measured from the exploit timestamp.", "",
          "## Test", "",
