@@ -64,3 +64,15 @@ def test_online_lstm_equals_offline_replay():
         on_s, on_p = _online(LstmStream(m, 10), seq)
         off_s, off_p = trajectory(items, pos, 10)
         assert np.allclose(on_s, off_s, atol=1e-5) and np.array_equal(on_p, off_p)
+
+
+def test_lstm_items_chunked_equals_whole():
+    from sidsb.models.lstm import LstmLM
+    from sidsb.stream import lstm_items_batch
+    m = LstmLM(emb=8, hidden=16, layers=2, chunk=20, stride=10, max_epochs=2,
+               patience=2, device="cpu").fit(TRAIN)
+    seqs = [list(RNG.integers(1, 9, L)) for L in (300, 57, 2, 1, 130)]
+    whole = lstm_items_batch(m, seqs)
+    tiny = lstm_items_batch(m, seqs, batch_size=2, time_chunk=17, token_budget=150)
+    for (a, pa), (b, pb) in zip(whole, tiny):
+        assert np.allclose(a, b, atol=1e-5) and np.array_equal(pa, pb)

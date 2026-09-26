@@ -42,7 +42,10 @@ def main():
             t0 = time.time()
             r = subprocess.run([sys.executable, "scripts/run_lidds_stream.py",
                                 "--config", str(cfg_path), "--out", str(out)])
-            status = "ok" if r.returncode == 0 else f"FAILED (exit {r.returncode})"
+            if (out / "metrics.json").exists():
+                status = "ok" + ("" if r.returncode == 0 else f" (results saved; exit code {r.returncode} at shutdown)")
+            else:
+                status = f"FAILED (exit {r.returncode}), no results"
             print(f"=== {z.stem} / {mode}: {status} in {(time.time() - t0) / 60:.1f} min ===", flush=True)
 
 

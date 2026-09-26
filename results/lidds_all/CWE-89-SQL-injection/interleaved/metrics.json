@@ -1,0 +1,530 @@
+{
+  "test": {
+    "ngram_n3": {
+      "window": 20,
+      "test": {
+        "0.01": {
+          "threshold": 0.45,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.006578947368421052,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.526913887,
+          "median_syscalls_to_detect": 32370.5
+        },
+        "0.05": {
+          "threshold": 0.4,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5269110795,
+          "median_syscalls_to_detect": 32369.5
+        }
+      }
+    },
+    "ngram_n6": {
+      "window": 50,
+      "test": {
+        "0.01": {
+          "threshold": 0.98,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.003289473684210526,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5324718720000003,
+          "median_syscalls_to_detect": 32536.0
+        },
+        "0.05": {
+          "threshold": 0.94,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.03289473684210526,
+          "attacks_with_pre_exploit_alarm": 0.03571428571428571,
+          "median_seconds_to_detect": 2.5272267755,
+          "median_syscalls_to_detect": 32382.5
+        }
+      }
+    },
+    "ngram_lm_n3": {
+      "window": 20,
+      "test": {
+        "0.01": {
+          "threshold": 5.807531064648012,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.006578947368421052,
+          "attacks_with_pre_exploit_alarm": 0.023809523809523808,
+          "median_seconds_to_detect": 2.5294508425,
+          "median_syscalls_to_detect": 32436.5
+        },
+        "0.05": {
+          "threshold": 5.544368301469306,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05592105263157895,
+          "attacks_with_pre_exploit_alarm": 0.023809523809523808,
+          "median_seconds_to_detect": 2.5268933825,
+          "median_syscalls_to_detect": 32359.5
+        }
+      }
+    },
+    "lstm_mean_s42": {
+      "window": 10,
+      "test": {
+        "0.01": {
+          "threshold": 5.550460905107671,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.009868421052631578,
+          "attacks_with_pre_exploit_alarm": 0.023809523809523808,
+          "median_seconds_to_detect": 2.4954215005,
+          "median_syscalls_to_detect": 31450.0
+        },
+        "0.05": {
+          "threshold": 4.7352656063775065,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05592105263157895,
+          "attacks_with_pre_exploit_alarm": 0.023809523809523808,
+          "median_seconds_to_detect": 2.4865233445,
+          "median_syscalls_to_detect": 31103.5
+        }
+      }
+    }
+  },
+  "dev": [
+    {
+      "model": "ngram_n3",
+      "window": 10,
+      "dev": {
+        "0.01": {
+          "threshold": 0.8,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.504116599,
+          "median_syscalls_to_detect": 32069.5
+        },
+        "0.05": {
+          "threshold": 0.6,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05263157894736842,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040348175,
+          "median_syscalls_to_detect": 32054.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n3",
+      "window": 20,
+      "dev": {
+        "0.01": {
+          "threshold": 0.45,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040485235,
+          "median_syscalls_to_detect": 32062.5
+        },
+        "0.05": {
+          "threshold": 0.4,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.03289473684210526,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.504045901,
+          "median_syscalls_to_detect": 32061.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n3",
+      "window": 50,
+      "dev": {
+        "0.01": {
+          "threshold": 0.28,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.504063717,
+          "median_syscalls_to_detect": 32068.5
+        },
+        "0.05": {
+          "threshold": 0.2,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05921052631578947,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.504049429,
+          "median_syscalls_to_detect": 32063.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n3",
+      "window": 100,
+      "dev": {
+        "0.01": {
+          "threshold": 0.17,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.006578947368421052,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.5043368624999998,
+          "median_syscalls_to_detect": 32073.5
+        },
+        "0.05": {
+          "threshold": 0.13,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05921052631578947,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.5040606074999996,
+          "median_syscalls_to_detect": 32067.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n3",
+      "window": 200,
+      "dev": {
+        "0.01": {
+          "threshold": 0.11,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.019736842105263157,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.504384436,
+          "median_syscalls_to_detect": 32080.5
+        },
+        "0.05": {
+          "threshold": 0.085,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.046052631578947366,
+          "attacks_with_pre_exploit_alarm": 0.05555555555555555,
+          "median_seconds_to_detect": 2.5043368624999998,
+          "median_syscalls_to_detect": 32073.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n6",
+      "window": 10,
+      "dev": {
+        "0.01": {
+          "threshold": 1.0,
+          "detection_rate": 0.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": null,
+          "median_syscalls_to_detect": null
+        },
+        "0.05": {
+          "threshold": 1.0,
+          "detection_rate": 0.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": null,
+          "median_syscalls_to_detect": null
+        }
+      }
+    },
+    {
+      "model": "ngram_n6",
+      "window": 20,
+      "dev": {
+        "0.01": {
+          "threshold": 1.0,
+          "detection_rate": 0.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": null,
+          "median_syscalls_to_detect": null
+        },
+        "0.05": {
+          "threshold": 1.0,
+          "detection_rate": 0.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": null,
+          "median_syscalls_to_detect": null
+        }
+      }
+    },
+    {
+      "model": "ngram_n6",
+      "window": 50,
+      "dev": {
+        "0.01": {
+          "threshold": 0.98,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.5043439145,
+          "median_syscalls_to_detect": 32077.5
+        },
+        "0.05": {
+          "threshold": 0.94,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.039473684210526314,
+          "attacks_with_pre_exploit_alarm": 0.05555555555555555,
+          "median_seconds_to_detect": 2.5043387065,
+          "median_syscalls_to_detect": 32074.5
+        }
+      }
+    },
+    {
+      "model": "ngram_n6",
+      "window": 100,
+      "dev": {
+        "0.01": {
+          "threshold": 0.89,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 12.771926505,
+          "median_syscalls_to_detect": 53252.0
+        },
+        "0.05": {
+          "threshold": 0.83,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.06578947368421052,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 12.7718948,
+          "median_syscalls_to_detect": 53246.0
+        }
+      }
+    },
+    {
+      "model": "ngram_n6",
+      "window": 200,
+      "dev": {
+        "0.01": {
+          "threshold": 0.7642500000000001,
+          "detection_rate": 0.027777777777777776,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 12.702902362,
+          "median_syscalls_to_detect": 54263.0
+        },
+        "0.05": {
+          "threshold": 0.6992499999999998,
+          "detection_rate": 0.6666666666666666,
+          "normal_recordings_alarming": 0.046052631578947366,
+          "attacks_with_pre_exploit_alarm": 0.08333333333333333,
+          "median_seconds_to_detect": 12.738301891,
+          "median_syscalls_to_detect": 54179.0
+        }
+      }
+    },
+    {
+      "model": "ngram_lm_n3",
+      "window": 10,
+      "dev": {
+        "0.01": {
+          "threshold": 6.907521303811683,
+          "detection_rate": 0.08333333333333333,
+          "normal_recordings_alarming": 0.02631578947368421,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 12.666015891,
+          "median_syscalls_to_detect": 37845.0
+        },
+        "0.05": {
+          "threshold": 6.51861558395688,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.10526315789473684,
+          "attacks_with_pre_exploit_alarm": 0.05555555555555555,
+          "median_seconds_to_detect": 2.5040317235,
+          "median_syscalls_to_detect": 32053.5
+        }
+      }
+    },
+    {
+      "model": "ngram_lm_n3",
+      "window": 20,
+      "dev": {
+        "0.01": {
+          "threshold": 5.807531064648012,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.02631578947368421,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040443125,
+          "median_syscalls_to_detect": 32060.5
+        },
+        "0.05": {
+          "threshold": 5.544368301469306,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.046052631578947366,
+          "attacks_with_pre_exploit_alarm": 0.05555555555555555,
+          "median_seconds_to_detect": 2.5040296875,
+          "median_syscalls_to_detect": 32051.5
+        }
+      }
+    },
+    {
+      "model": "ngram_lm_n3",
+      "window": 50,
+      "dev": {
+        "0.01": {
+          "threshold": 4.885425435107145,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.02631578947368421,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5041981755,
+          "median_syscalls_to_detect": 32069.5
+        },
+        "0.05": {
+          "threshold": 4.668620817673248,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.06578947368421052,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040606074999996,
+          "median_syscalls_to_detect": 32067.5
+        }
+      }
+    },
+    {
+      "model": "ngram_lm_n3",
+      "window": 100,
+      "dev": {
+        "0.01": {
+          "threshold": 4.386695430111929,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 12.771865085,
+          "median_syscalls_to_detect": 53241.0
+        },
+        "0.05": {
+          "threshold": 4.178947178190979,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.08552631578947369,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 12.771628823,
+          "median_syscalls_to_detect": 53236.0
+        }
+      }
+    },
+    {
+      "model": "ngram_lm_n3",
+      "window": 200,
+      "dev": {
+        "0.01": {
+          "threshold": 3.9510774779007165,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.019736842105263157,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 12.772881814,
+          "median_syscalls_to_detect": 53322.0
+        },
+        "0.05": {
+          "threshold": 3.79869061312809,
+          "detection_rate": 0.9722222222222222,
+          "normal_recordings_alarming": 0.05921052631578947,
+          "attacks_with_pre_exploit_alarm": 0.05555555555555555,
+          "median_seconds_to_detect": 12.772626606,
+          "median_syscalls_to_detect": 53294.0
+        }
+      }
+    },
+    {
+      "model": "lstm_mean_s42",
+      "window": 10,
+      "dev": {
+        "0.01": {
+          "threshold": 5.550460905107671,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.019736842105263157,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.485317341,
+          "median_syscalls_to_detect": 30839.5
+        },
+        "0.05": {
+          "threshold": 4.7352656063775065,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.07236842105263158,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.458805922,
+          "median_syscalls_to_detect": 30518.0
+        }
+      }
+    },
+    {
+      "model": "lstm_mean_s42",
+      "window": 20,
+      "dev": {
+        "0.01": {
+          "threshold": 4.248357141822576,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.013157894736842105,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5039902439999997,
+          "median_syscalls_to_detect": 31857.0
+        },
+        "0.05": {
+          "threshold": 3.411971329618245,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.05263157894736842,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.4773468215000003,
+          "median_syscalls_to_detect": 30845.0
+        }
+      }
+    },
+    {
+      "model": "lstm_mean_s42",
+      "window": 50,
+      "dev": {
+        "0.01": {
+          "threshold": 2.998550651738048,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040113285,
+          "median_syscalls_to_detect": 32048.5
+        },
+        "0.05": {
+          "threshold": 2.56416042773053,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.019736842105263157,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.494619503,
+          "median_syscalls_to_detect": 32046.5
+        }
+      }
+    },
+    {
+      "model": "lstm_mean_s42",
+      "window": 100,
+      "dev": {
+        "0.01": {
+          "threshold": 2.511692526053637,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040450275,
+          "median_syscalls_to_detect": 32061.5
+        },
+        "0.05": {
+          "threshold": 2.1188847540114075,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.046052631578947366,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5040385499999998,
+          "median_syscalls_to_detect": 32058.0
+        }
+      }
+    },
+    {
+      "model": "lstm_mean_s42",
+      "window": 200,
+      "dev": {
+        "0.01": {
+          "threshold": 2.162844449675852,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.0,
+          "attacks_with_pre_exploit_alarm": 0.0,
+          "median_seconds_to_detect": 2.5043649510000003,
+          "median_syscalls_to_detect": 32079.0
+        },
+        "0.05": {
+          "threshold": 1.8210101105819911,
+          "detection_rate": 1.0,
+          "normal_recordings_alarming": 0.02631578947368421,
+          "attacks_with_pre_exploit_alarm": 0.027777777777777776,
+          "median_seconds_to_detect": 2.5043235035,
+          "median_syscalls_to_detect": 32072.5
+        }
+      }
+    }
+  ]
+}

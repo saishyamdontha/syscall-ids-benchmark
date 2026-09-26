@@ -1,0 +1,33 @@
+fpr_targets:
+- 0.01
+- 0.05
+models:
+- n: 3
+  type: ngram
+- n: 6
+  type: ngram
+- k: 0.1
+  n: 3
+  type: ngram_lm
+- chunk: 64
+  dropout: 0.2
+  emb: 64
+  hidden: 128
+  layers: 2
+  max_epochs: 100
+  patience: 6
+  seed: 42
+  stride: 32
+  trace_agg: mean
+  type: lstm
+per_thread: false
+scenario_zip: data\raw\lidds\Bruteforce_CWE-307.zip
+seed: 42
+selection_metric: '0.01'
+tiebreak_metric: '0.05'
+windows:
+- 10
+- 20
+- 50
+- 100
+- 200

@@ -36,21 +36,35 @@ def ngram_items(model: NgramUnseen, seq):
 
 
 @torch.no_grad()
-def lstm_items_batch(model, seqs, batch_size=64):
-    """Per-syscall surprise for many traces (batched, equals LstmLM.token_nll)."""
+def lstm_items_batch(model, seqs, batch_size=64, time_chunk=4096, token_budget=2_000_000):
+    """Per-syscall surprise for many traces (batched, equals LstmLM.token_nll).
+
+    Batches are limited by a token budget and long traces are processed in time
+    chunks with the LSTM state carried over, so memory stays bounded on the GPU.
+    """
     model.net.eval()
     enc = [model._encode(s) for s in seqs]
     out = [(np.zeros(0), np.zeros(0, dtype=int))] * len(seqs)
     order = [i for i in sorted(range(len(enc)), key=lambda i: len(enc[i])) if len(enc[i]) >= 2]
-    for b in range(0, len(order), batch_size):
-        idxs = order[b:b + batch_size]
-        x = model._pad([enc[i] for i in idxs]).to(model.device)
+    i = 0
+    while i < len(order):
+        j = i + 1
+        while (j < len(order) and j - i < batch_size
+               and (j - i + 1) * len(enc[order[j]]) <= token_budget):
+            j += 1
+        idxs, i = order[i:j], j
+        x = model._pad([enc[k] for k in idxs]).to(model.device)
         inp, tgt = x[:, :-1], x[:, 1:]
-        logp = torch.log_softmax(model.net(inp), dim=-1)
-        nll = (-logp.gather(2, tgt.unsqueeze(-1)).squeeze(-1)).cpu().numpy()
-        for row, i in enumerate(idxs):
-            L = len(enc[i])
-            out[i] = (nll[row, :L - 1].astype(float), np.arange(2, L + 1))
+        state, parts = None, []
+        for t in range(0, inp.size(1), time_chunk):
+            h, state = model.net.lstm(model.net.emb(inp[:, t:t + time_chunk]), state)
+            logp = torch.log_softmax(model.net.out(h), dim=-1)
+            y = tgt[:, t:t + time_chunk]
+            parts.append((-logp.gather(2, y.unsqueeze(-1)).squeeze(-1)).cpu().numpy())
+        nll = np.concatenate(parts, axis=1)
+        for row, k in enumerate(idxs):
+            L = len(enc[k])
+            out[k] = (nll[row, :L - 1].astype(float), np.arange(2, L + 1))
     return out
 
 
