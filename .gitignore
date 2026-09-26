@@ -5,3 +5,4 @@ data/raw/
 *.egg-info/
 .pytest_cache/
 checkpoints/
+data/cache/
