@@ -178,3 +178,19 @@ scenario zip (enter events, all threads interleaved).
 - Caveats: all attacks run the same exploit script, so this shows one pattern caught
   reliably, not generalisation; an unusual but benign client could trigger it too.
   Bruteforce_CWE-307 and CWE-89-SQL-injection are next.
+
+**Per-thread context changes the picture.** Judging each syscall only against its own
+thread (`configs/lidds_threads.yaml`), every model detects Heartbleed on test at 1%:
+
+| Model | Threads interleaved | Per thread |
+|---|---|---|
+| 3-gram | 0.000 | 1.000 |
+| 6-gram | 0.000 | 1.000 |
+| n-gram frequency model (n=3 / n=4) | 0.000 / 0.000 | 1.000 / 1.000 |
+| LSTM (seed 42) | 1.000 | 1.000 |
+
+Interleaving unrelated requests makes even normal traffic produce unseen 3-grams, which
+raises the calibrated threshold above the attack's signal. The LSTM's advantage was
+untangling threads; per thread, a 3-gram lookup (~1.5M syscalls/s on CPU) matches it.
+Two models alarm on 1.3% of normal recordings against a 1% target (363 calibration
+recordings). One scenario only, pending Bruteforce_CWE-307 and CWE-89-SQL-injection.
