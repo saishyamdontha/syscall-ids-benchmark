@@ -1,0 +1,53 @@
+calibration normals=1748 dev=1082 test=2288
+fitting ngram_n3 ...
+ngram_n3       W=200  DR@1%=0.151 (normals alarming 0.010)  median syscalls to alarm=202  throughput=1,605,222 syscalls/s
+fitting ngram_n6 ...
+ngram_n6       W=200  DR@1%=0.000 (normals alarming 0.000)  median syscalls to alarm=-  throughput=1,444,321 syscalls/s
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=2.6850  holdout_nll=2.0261
+    epoch  2  train_nll=1.6540  holdout_nll=1.6164
+    epoch  3  train_nll=1.3748  holdout_nll=1.4527
+    epoch  4  train_nll=1.2474  holdout_nll=1.3579
+    epoch  5  train_nll=1.1593  holdout_nll=1.2948
+    epoch  6  train_nll=1.0956  holdout_nll=1.2405
+    epoch  7  train_nll=1.0461  holdout_nll=1.1975
+    epoch  8  train_nll=1.0011  holdout_nll=1.1652
+    epoch  9  train_nll=0.9657  holdout_nll=1.1360
+    epoch 10  train_nll=0.9350  holdout_nll=1.1121
+    epoch 11  train_nll=0.9076  holdout_nll=1.0944
+    epoch 12  train_nll=0.8859  holdout_nll=1.0803
+    epoch 13  train_nll=0.8642  holdout_nll=1.0640
+    epoch 14  train_nll=0.8461  holdout_nll=1.0520
+    epoch 15  train_nll=0.8322  holdout_nll=1.0407
+    epoch 16  train_nll=0.8174  holdout_nll=1.0338
+    epoch 17  train_nll=0.8050  holdout_nll=1.0259
+    epoch 18  train_nll=0.7902  holdout_nll=1.0195
+    epoch 19  train_nll=0.7813  holdout_nll=1.0109
+    epoch 20  train_nll=0.7700  holdout_nll=1.0120
+    epoch 21  train_nll=0.7588  holdout_nll=1.0081
+    epoch 22  train_nll=0.7500  holdout_nll=1.0049
+    epoch 23  train_nll=0.7447  holdout_nll=1.0041
+    epoch 24  train_nll=0.7354  holdout_nll=0.9966
+    epoch 25  train_nll=0.7246  holdout_nll=0.9949
+    epoch 26  train_nll=0.7205  holdout_nll=0.9876
+    epoch 27  train_nll=0.7108  holdout_nll=0.9891
+    epoch 28  train_nll=0.7059  holdout_nll=0.9872
+    epoch 29  train_nll=0.6989  holdout_nll=0.9874
+    epoch 30  train_nll=0.6930  holdout_nll=0.9900
+    epoch 31  train_nll=0.6872  holdout_nll=0.9855
+    epoch 32  train_nll=0.6814  holdout_nll=0.9816
+    epoch 33  train_nll=0.6741  holdout_nll=0.9858
+    epoch 34  train_nll=0.6704  holdout_nll=0.9816
+    epoch 35  train_nll=0.6640  holdout_nll=0.9816
+    epoch 36  train_nll=0.6597  holdout_nll=0.9882
+    epoch 37  train_nll=0.6534  holdout_nll=0.9897
+    epoch 38  train_nll=0.6517  holdout_nll=0.9799
+    epoch 39  train_nll=0.6436  holdout_nll=0.9893
+    epoch 40  train_nll=0.6412  holdout_nll=0.9865
+    epoch 41  train_nll=0.6373  holdout_nll=0.9962
+    epoch 42  train_nll=0.6346  holdout_nll=0.9925
+    epoch 43  train_nll=0.6311  holdout_nll=0.9939
+    epoch 44  train_nll=0.6265  holdout_nll=0.9932
+lstm_mean_s42  W=200  DR@1%=0.152 (normals alarming 0.010)  median syscalls to alarm=201  throughput=3,937 syscalls/s
+
+Wrote results\gpu\stream/results.md
