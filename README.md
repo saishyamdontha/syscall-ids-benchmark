@@ -114,3 +114,38 @@ Limitation: ADFA-LD attack traces have no attack start time, so "syscalls to ala
 is counted from the start of the trace. Streaming LSTM results were produced with
 torch 2.11.0+cu128 on an NVIDIA RTX 2000 Ada. Full tables:
 `results/gpu/stream/results.md`, `results/gpu/stream_seeds/results.md`.
+
+## Why do alerts fire? (explained alerts)
+
+Every 3-gram streaming alert is explained exactly: the evidence is the set of
+never-seen 3-grams in the alarm window, and their count / W *is* the alarm score
+(asserted for every alert). Syscall names use the i386 table, since ADFA-LD is 32-bit.
+Full report with examples: `results/explain/report.md`.
+
+| Family | Alerts / test traces (W=200, 1% threshold) | Most frequent evidence |
+|---|---|---|
+| Adduser | 13 / 67 | `clock_gettime > _newselect > _newselect` |
+| Hydra_FTP | 22 / 111 | `ppoll > socketcall > socketcall` |
+| Hydra_SSH | 19 / 137 | `_newselect > read > setitimer` |
+| Java_Meterpreter | 13 / 88 | `clock_gettime > _newselect > clock_gettime` |
+| Meterpreter | 7 / 55 | `_newselect > read > clock_gettime` |
+| Web_Shell | 7 / 80 | `_newselect > _newselect > clock_gettime` |
+
+**What the explanations reveal** (`scripts/syscall_presence.py`, output in
+`results/explain/syscall_presence.txt`):
+
+- No alert contains a syscall unseen in training: all evidence is new *orderings*
+  of familiar calls.
+- The evidence is dominated by event-loop and timing calls: `_newselect` 16.6%,
+  `clock_gettime` 14.7%, `read` 10.0%, `nanosleep` 9.6%, `setitimer` 7.6%.
+- `execve` appears in 9% of attack traces but 64% of normal test traces.
+- So on ADFA-LD the detector largely recognises *which kind of process was
+  recorded* (long-running server loops vs. short-lived commands), not the malicious
+  actions themselves. Hydra_FTP is the clearest exception: `ppoll > socketcall > ...`
+  is the server handling a burst of connections, i.e. the brute force as the victim
+  sees it.
+- False alarms (17 of 1,750 test normal traces) carry the same kind of timing-loop
+  evidence (`_newselect > time > time`), which caps what any threshold can achieve.
+- This is a property of the dataset as much as of the model, and motivates
+  evaluating on data where attacks happen inside the normal activity of the same
+  service (e.g. LID-DS-2021).
