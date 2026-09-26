@@ -3,7 +3,16 @@
 Trained on normal traces only to predict the next syscall. A trace's anomaly
 score is how surprised the model is by it (negative log-likelihood per token).
 Early stopping uses a slice of the TRAINING normals, never calibration or test.
+
+Checkpointing: set checkpoint_dir (or env var SIDSB_CKPT_DIR). Training state is
+saved after every epoch; rerunning the same config resumes where it stopped, and
+a finished model is reloaded instead of retrained.
 """
+import hashlib
+import json
+import os
+from pathlib import Path
+
 import numpy as np
 import torch
 import torch.nn as nn
@@ -27,7 +36,8 @@ class _Net(nn.Module):
 class LstmLM:
     def __init__(self, emb=64, hidden=128, layers=2, dropout=0.2, chunk=64, stride=32,
                  batch_size=128, lr=2e-3, max_epochs=30, patience=4, holdout=0.1,
-                 trace_agg="mean", agg_window=20, seed=42, device="auto"):
+                 trace_agg="mean", agg_window=20, seed=42, device="auto",
+                 checkpoint_dir=None):
         self.emb, self.hidden, self.layers, self.dropout = emb, hidden, layers, dropout
         self.chunk, self.stride, self.batch_size, self.lr = chunk, stride, batch_size, lr
         self.max_epochs, self.patience, self.holdout = max_epochs, patience, holdout
@@ -35,7 +45,41 @@ class LstmLM:
         self.device = ("cuda" if torch.cuda.is_available() else "cpu") if device == "auto" else device
         self.name = f"lstm_{trace_agg}_s{seed}"
         self.history = []
+        self.checkpoint_dir = checkpoint_dir or os.environ.get("SIDSB_CKPT_DIR")
 
+    # ---- checkpointing ----------------------------------------------------
+    def _run_id(self, seqs):
+        """Hash of everything that determines the trained weights (not trace_agg,
+        which only affects scoring). Same id -> safe to resume or reuse."""
+        h = hashlib.sha256()
+        cfg = {k: getattr(self, k) for k in ("emb", "hidden", "layers", "dropout", "chunk",
+               "stride", "batch_size", "lr", "max_epochs", "patience", "holdout", "seed")}
+        h.update(json.dumps(cfg, sort_keys=True).encode())
+        for s in seqs:
+            h.update(np.asarray(s, dtype=np.int64).tobytes())
+            h.update(b"|")
+        return h.hexdigest()[:16]
+
+    def _ckpt_path(self, run_id):
+        d = Path(self.checkpoint_dir)
+        d.mkdir(parents=True, exist_ok=True)
+        return d / f"lstm_s{self.seed}_{run_id}.pt"
+
+    def _save(self, path, epoch, best, best_state, bad, done):
+        state = {
+            "epoch": epoch, "best": best, "bad": bad, "done": done,
+            "vocab": self.vocab, "history": self.history,
+            "net": self.net.state_dict(), "best_state": best_state,
+            "opt": self.opt.state_dict(),
+            "np_rng": self.rng.bit_generator.state,
+            "torch_rng": torch.get_rng_state(),
+            "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None,
+        }
+        tmp = path.with_suffix(".tmp")
+        torch.save(state, tmp)
+        os.replace(tmp, path)  # atomic: a crash mid-save never corrupts the checkpoint
+
+    # ---- data ---------------------------------------------------------------
     def _encode(self, seq):
         return [self.vocab.get(s, UNK) for s in seq]
 
@@ -57,6 +101,7 @@ class LstmLM:
         n = max(len(b) for b in batch)
         return torch.tensor([b + [PAD] * (n - len(b)) for b in batch], dtype=torch.long)
 
+    # ---- training -----------------------------------------------------------
     def _epoch_loss(self, chunks, train):
         self.net.train(train)
         total, count = 0.0, 0
@@ -96,8 +141,26 @@ class LstmLM:
         self.opt = torch.optim.Adam(self.net.parameters(), lr=self.lr)
         self.loss_fn = nn.CrossEntropyLoss(ignore_index=PAD)
 
-        best, best_state, bad = float("inf"), None, 0
-        for epoch in range(1, self.max_epochs + 1):
+        best, best_state, bad, start = float("inf"), None, 0, 1
+        path = self._ckpt_path(self._run_id(seqs)) if self.checkpoint_dir else None
+        if path is not None and path.exists():
+            ck = torch.load(path, map_location=self.device, weights_only=False)
+            self.vocab, self.history = ck["vocab"], ck["history"]
+            best, bad, best_state = ck["best"], ck["bad"], ck["best_state"]
+            if ck["done"]:
+                print(f"    loaded finished checkpoint {path.name} (epoch {ck['epoch']})", flush=True)
+                self.net.load_state_dict(best_state)
+                return self
+            self.net.load_state_dict(ck["net"])
+            self.opt.load_state_dict(ck["opt"])
+            self.rng.bit_generator.state = ck["np_rng"]
+            torch.set_rng_state(ck["torch_rng"])
+            if ck["cuda_rng"] is not None and torch.cuda.is_available():
+                torch.cuda.set_rng_state_all(ck["cuda_rng"])
+            start = ck["epoch"] + 1
+            print(f"    resuming {path.name} from epoch {start}", flush=True)
+
+        for epoch in range(start, self.max_epochs + 1):
             tr = self._epoch_loss(train_chunks, train=True)
             va = self._epoch_loss(hold_chunks, train=False)
             self.history.append({"epoch": epoch, "train_nll": tr, "holdout_nll": va})
@@ -107,11 +170,15 @@ class LstmLM:
                 best_state = {k: v.detach().clone() for k, v in self.net.state_dict().items()}
             else:
                 bad += 1
-                if bad >= self.patience:
-                    break
+            stop = bad >= self.patience or epoch == self.max_epochs
+            if path is not None:
+                self._save(path, epoch, best, best_state, bad, done=stop)
+            if stop:
+                break
         self.net.load_state_dict(best_state)
         return self
 
+    # ---- scoring ------------------------------------------------------------
     @torch.no_grad()
     def token_nll(self, seq):
         """Per-token surprise for one trace (first token has no prediction)."""
@@ -155,4 +222,3 @@ class LstmLM:
             for row, i in enumerate(idxs):
                 out[i] = self._aggregate(nll[row][mask[row]])
         return out
-
