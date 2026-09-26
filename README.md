@@ -149,3 +149,32 @@ Full report with examples: `results/explain/report.md`.
 - This is a property of the dataset as much as of the model, and motivates
   evaluating on data where attacks happen inside the normal activity of the same
   service (e.g. LID-DS-2021).
+
+## LID-DS 2021: attacks inside normal traffic (in progress)
+
+LID-DS 2021 records a real vulnerable service with normal users and, in attack
+recordings, an attacker, and gives the exploit timestamp. So alarms *before* the
+exploit count as false alarms and time-to-detect is measured in real seconds.
+Data: the LID-DS 2021 mirror listed by COMIDDS (Fraunhofer FKIE), since the original
+Leipzig link is no longer available. Loader reads recordings straight from the
+scenario zip (enter events, all threads interleaved).
+
+**CVE-2014-0160 (Heartbleed)**, test = 304 normal + 84 attack recordings, W chosen on dev:
+
+| Model | Detection @1% | Normal recordings alarming | Attacks alarming before exploit | Median s to detect |
+|---|---|---|---|---|
+| 3-gram | 0.000 | 0.003 | 0.000 | - |
+| 6-gram | 0.000 | 0.000 | 0.000 | - |
+| LSTM, 3 seeds (W=10) | 1.000 / 1.000 / 1.000 | 0.010 | 0.000 | 0.00 / 0.00 / 0.95 |
+
+- The attack uses **no syscall absent from training** (`results/lidds_CVE-2014-0160_summary.txt`),
+  so "unseen n-gram" detectors are blind to it; the LSTM catches familiar syscalls in
+  rare orders. This reverses the ADFA-LD result, where the 3-gram won.
+- Not a marker artifact: in all 84 test attacks the first post-exploit syscall is
+  `semop` (Apache accepting the attacker's connection) with surprise 0.00, the same
+  as normal traffic (`results/lidds/CVE-2014-0160/exploit_boundary.txt`).
+- The anomaly is a short burst: on dev (seed 42), detection @1% is 1.000 at W=10,
+  0.028 at W=20 and 0.000 at W=50.
+- Caveats: all attacks run the same exploit script, so this shows one pattern caught
+  reliably, not generalisation; an unusual but benign client could trigger it too.
+  Bruteforce_CWE-307 and CWE-89-SQL-injection are next.
