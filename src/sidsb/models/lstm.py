@@ -154,9 +154,9 @@ class LstmLM:
             self.net.load_state_dict(ck["net"])
             self.opt.load_state_dict(ck["opt"])
             self.rng.bit_generator.state = ck["np_rng"]
-            torch.set_rng_state(ck["torch_rng"])
+            torch.set_rng_state(ck["torch_rng"].cpu())          # RNG states must be CPU ByteTensors
             if ck["cuda_rng"] is not None and torch.cuda.is_available():
-                torch.cuda.set_rng_state_all(ck["cuda_rng"])
+                torch.cuda.set_rng_state_all([t.cpu() for t in ck["cuda_rng"]])
             start = ck["epoch"] + 1
             print(f"    resuming {path.name} from epoch {start}", flush=True)
 
