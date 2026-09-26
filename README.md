@@ -48,7 +48,7 @@ pip install -r requirements.txt && pip install -e .
 pip install torch --index-url https://download.pytorch.org/whl/cpu
 # ADFA-LD mirror: https://github.com/zhu1971/a-labelled-version-of-the-adfa-ld-dataset
 unzip ADFA-LD.zip -d data/raw/
-./scripts/reproduce.sh
+./scripts/reproduce.sh   # also downloads the i386 syscall table (Linux v6.6) into data/raw/
 ```
 
 ## Limitations
