@@ -1,0 +1,205 @@
+
+=== CVE-2020-9484 (5.49 GB) / per_thread / 1 models ===
+CVE-2020-9484: train=210 cal=363 dev=188 test=388 (dev attacks=36, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=0.1916  holdout_nll=0.1762
+    epoch  2  train_nll=0.1723  holdout_nll=0.1748
+    epoch  3  train_nll=0.1711  holdout_nll=0.1747
+    epoch  4  train_nll=0.1707  holdout_nll=0.1741
+    epoch  5  train_nll=0.1704  holdout_nll=0.1737
+    epoch  6  train_nll=0.1702  holdout_nll=0.1738
+    epoch  7  train_nll=0.1704  holdout_nll=0.1737
+    epoch  8  train_nll=0.1701  holdout_nll=0.1735
+    epoch  9  train_nll=0.1701  holdout_nll=0.1735
+    epoch 10  train_nll=0.1701  holdout_nll=0.1737
+    epoch 11  train_nll=0.1701  holdout_nll=0.1738
+    epoch 12  train_nll=0.1701  holdout_nll=0.1737
+    epoch 13  train_nll=0.1702  holdout_nll=0.1737
+    epoch 14  train_nll=0.1704  holdout_nll=0.1742
+lstm_mean_s42  W=10   DR@1%=1.000 normals alarming=0.013 pre-exploit alarms=0.000 median s to detect=2.04
+
+Wrote results\lidds_lstm_ext\CVE-2020-9484\per_thread/results.md
+=== CVE-2020-9484 / per_thread: ok (results saved; exit code 3221226505 at shutdown) in 14.1 min ===
+
+=== CVE-2020-9484 (5.49 GB) / interleaved / 1 models ===
+CVE-2020-9484: train=210 cal=363 dev=188 test=388 (dev attacks=36, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=0.3767  holdout_nll=0.3298
+    epoch  2  train_nll=0.3401  holdout_nll=0.3231
+    epoch  3  train_nll=0.3356  holdout_nll=0.3211
+    epoch  4  train_nll=0.3334  holdout_nll=0.3208
+    epoch  5  train_nll=0.3319  holdout_nll=0.3184
+    epoch  6  train_nll=0.3308  holdout_nll=0.3177
+    epoch  7  train_nll=0.3300  holdout_nll=0.3181
+    epoch  8  train_nll=0.3295  holdout_nll=0.3168
+    epoch  9  train_nll=0.3289  holdout_nll=0.3167
+    epoch 10  train_nll=0.3284  holdout_nll=0.3163
+    epoch 11  train_nll=0.3280  holdout_nll=0.3159
+    epoch 12  train_nll=0.3277  holdout_nll=0.3160
+    epoch 13  train_nll=0.3274  holdout_nll=0.3152
+    epoch 14  train_nll=0.3272  holdout_nll=0.3159
+    epoch 15  train_nll=0.3270  holdout_nll=0.3153
+    epoch 16  train_nll=0.3267  holdout_nll=0.3150
+    epoch 17  train_nll=0.3264  holdout_nll=0.3159
+    epoch 18  train_nll=0.3262  holdout_nll=0.3150
+    epoch 19  train_nll=0.3261  holdout_nll=0.3149
+    epoch 20  train_nll=0.3258  holdout_nll=0.3139
+    epoch 21  train_nll=0.3258  holdout_nll=0.3139
+    epoch 22  train_nll=0.3256  holdout_nll=0.3141
+    epoch 23  train_nll=0.3254  holdout_nll=0.3139
+    epoch 24  train_nll=0.3252  holdout_nll=0.3139
+    epoch 25  train_nll=0.3251  holdout_nll=0.3135
+    epoch 26  train_nll=0.3250  holdout_nll=0.3136
+    epoch 27  train_nll=0.3249  holdout_nll=0.3134
+    epoch 28  train_nll=0.3247  holdout_nll=0.3132
+    epoch 29  train_nll=0.3246  holdout_nll=0.3133
+    epoch 30  train_nll=0.3245  holdout_nll=0.3131
+    epoch 31  train_nll=0.3243  holdout_nll=0.3131
+    epoch 32  train_nll=0.3243  holdout_nll=0.3132
+    epoch 33  train_nll=0.3241  holdout_nll=0.3134
+    epoch 34  train_nll=0.3241  holdout_nll=0.3130
+    epoch 35  train_nll=0.3240  holdout_nll=0.3131
+    epoch 36  train_nll=0.3241  holdout_nll=0.3134
+lstm_mean_s42  W=10   DR@1%=1.000 normals alarming=0.010 pre-exploit alarms=0.012 median s to detect=2.04
+
+Wrote results\lidds_lstm_ext\CVE-2020-9484\interleaved/results.md
+=== CVE-2020-9484 / interleaved: ok (results saved; exit code 3221226505 at shutdown) in 31.1 min ===
+
+=== CVE-2017-7529 (6.13 GB) / per_thread / 1 models ===
+CVE-2017-7529: train=210 cal=343 dev=181 test=376 (dev attacks=35, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=1.1555  holdout_nll=0.3181
+    epoch  2  train_nll=0.2239  holdout_nll=0.1745
+    epoch  3  train_nll=0.1573  holdout_nll=0.1300
+    epoch  4  train_nll=0.1263  holdout_nll=0.1133
+    epoch  5  train_nll=0.1145  holdout_nll=0.1041
+    epoch  6  train_nll=0.1076  holdout_nll=0.0993
+    epoch  7  train_nll=0.1042  holdout_nll=0.0981
+    epoch  8  train_nll=0.1018  holdout_nll=0.0955
+    epoch  9  train_nll=0.0993  holdout_nll=0.0948
+    epoch 10  train_nll=0.0987  holdout_nll=0.0938
+    epoch 11  train_nll=0.0967  holdout_nll=0.0916
+    epoch 12  train_nll=0.0957  holdout_nll=0.0913
+    epoch 13  train_nll=0.0947  holdout_nll=0.0912
+    epoch 14  train_nll=0.0937  holdout_nll=0.0903
+    epoch 15  train_nll=0.0925  holdout_nll=0.0889
+    epoch 16  train_nll=0.0921  holdout_nll=0.0884
+    epoch 17  train_nll=0.0910  holdout_nll=0.0882
+    epoch 18  train_nll=0.0907  holdout_nll=0.0875
+    epoch 19  train_nll=0.0900  holdout_nll=0.0880
+    epoch 20  train_nll=0.0897  holdout_nll=0.0862
+    epoch 21  train_nll=0.0893  holdout_nll=0.0874
+    epoch 22  train_nll=0.0892  holdout_nll=0.0865
+    epoch 23  train_nll=0.0888  holdout_nll=0.0872
+    epoch 24  train_nll=0.0888  holdout_nll=0.0875
+    epoch 25  train_nll=0.0885  holdout_nll=0.0860
+    epoch 26  train_nll=0.0882  holdout_nll=0.0864
+    epoch 27  train_nll=0.0882  holdout_nll=0.0862
+    epoch 28  train_nll=0.0877  holdout_nll=0.0867
+    epoch 29  train_nll=0.0877  holdout_nll=0.0863
+    epoch 30  train_nll=0.0875  holdout_nll=0.0857
+    epoch 31  train_nll=0.0870  holdout_nll=0.0850
+    epoch 32  train_nll=0.0873  holdout_nll=0.0859
+    epoch 33  train_nll=0.0870  holdout_nll=0.0856
+    epoch 34  train_nll=0.0866  holdout_nll=0.0851
+    epoch 35  train_nll=0.0867  holdout_nll=0.0850
+    epoch 36  train_nll=0.0865  holdout_nll=0.0849
+    epoch 37  train_nll=0.0864  holdout_nll=0.0860
+    epoch 38  train_nll=0.0866  holdout_nll=0.0856
+    epoch 39  train_nll=0.0861  holdout_nll=0.0850
+    epoch 40  train_nll=0.0861  holdout_nll=0.0848
+    epoch 41  train_nll=0.0862  holdout_nll=0.0854
+    epoch 42  train_nll=0.0859  holdout_nll=0.0853
+    epoch 43  train_nll=0.0858  holdout_nll=0.0849
+    epoch 44  train_nll=0.0859  holdout_nll=0.0859
+    epoch 45  train_nll=0.0857  holdout_nll=0.0854
+    epoch 46  train_nll=0.0857  holdout_nll=0.0853
+lstm_mean_s42  W=20   DR@1%=1.000 normals alarming=0.017 pre-exploit alarms=0.024 median s to detect=0.00
+
+Wrote results\lidds_lstm_ext\CVE-2017-7529\per_thread/results.md
+=== CVE-2017-7529 / per_thread: ok (results saved; exit code 3221226505 at shutdown) in 0.4 min ===
+
+=== CVE-2017-7529 (6.13 GB) / interleaved / 1 models ===
+CVE-2017-7529: train=210 cal=343 dev=181 test=376 (dev attacks=35, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=1.1627  holdout_nll=0.3199
+    epoch  2  train_nll=0.2251  holdout_nll=0.1820
+    epoch  3  train_nll=0.1595  holdout_nll=0.1356
+    epoch  4  train_nll=0.1247  holdout_nll=0.1165
+    epoch  5  train_nll=0.1122  holdout_nll=0.1095
+    epoch  6  train_nll=0.1061  holdout_nll=0.1059
+    epoch  7  train_nll=0.1029  holdout_nll=0.1036
+    epoch  8  train_nll=0.1003  holdout_nll=0.1008
+    epoch  9  train_nll=0.0989  holdout_nll=0.1000
+    epoch 10  train_nll=0.0974  holdout_nll=0.0995
+    epoch 11  train_nll=0.0961  holdout_nll=0.0974
+    epoch 12  train_nll=0.0949  holdout_nll=0.0973
+    epoch 13  train_nll=0.0942  holdout_nll=0.0969
+    epoch 14  train_nll=0.0936  holdout_nll=0.0952
+    epoch 15  train_nll=0.0926  holdout_nll=0.0947
+    epoch 16  train_nll=0.0917  holdout_nll=0.0946
+    epoch 17  train_nll=0.0912  holdout_nll=0.0950
+    epoch 18  train_nll=0.0907  holdout_nll=0.0937
+    epoch 19  train_nll=0.0902  holdout_nll=0.0931
+    epoch 20  train_nll=0.0899  holdout_nll=0.0937
+    epoch 21  train_nll=0.0899  holdout_nll=0.0936
+    epoch 22  train_nll=0.0894  holdout_nll=0.0931
+    epoch 23  train_nll=0.0890  holdout_nll=0.0925
+    epoch 24  train_nll=0.0887  holdout_nll=0.0927
+    epoch 25  train_nll=0.0881  holdout_nll=0.0921
+    epoch 26  train_nll=0.0881  holdout_nll=0.0921
+    epoch 27  train_nll=0.0879  holdout_nll=0.0926
+    epoch 28  train_nll=0.0871  holdout_nll=0.0927
+    epoch 29  train_nll=0.0873  holdout_nll=0.0924
+    epoch 30  train_nll=0.0868  holdout_nll=0.0919
+    epoch 31  train_nll=0.0871  holdout_nll=0.0916
+    epoch 32  train_nll=0.0867  holdout_nll=0.0919
+    epoch 33  train_nll=0.0863  holdout_nll=0.0919
+    epoch 34  train_nll=0.0862  holdout_nll=0.0924
+    epoch 35  train_nll=0.0860  holdout_nll=0.0914
+    epoch 36  train_nll=0.0860  holdout_nll=0.0920
+    epoch 37  train_nll=0.0860  holdout_nll=0.0911
+    epoch 38  train_nll=0.0859  holdout_nll=0.0918
+    epoch 39  train_nll=0.0856  holdout_nll=0.0918
+    epoch 40  train_nll=0.0855  holdout_nll=0.0930
+    epoch 41  train_nll=0.0854  holdout_nll=0.0912
+    epoch 42  train_nll=0.0855  holdout_nll=0.0922
+    epoch 43  train_nll=0.0853  holdout_nll=0.0914
+lstm_mean_s42  W=20   DR@1%=1.000 normals alarming=0.021 pre-exploit alarms=0.036 median s to detect=0.00
+
+Wrote results\lidds_lstm_ext\CVE-2017-7529\interleaved/results.md
+=== CVE-2017-7529 / interleaved: ok (results saved; exit code 3221226505 at shutdown) in 0.3 min ===
+
+=== CVE-2019-5418 (7.77 GB) / per_thread / 1 models ===
+CVE-2019-5418: train=210 cal=364 dev=188 test=388 (dev attacks=36, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=0.3511  holdout_nll=0.3345
+    epoch  2  train_nll=0.3350  holdout_nll=0.3325
+    epoch  3  train_nll=0.3337  holdout_nll=0.3319
+    epoch  4  train_nll=0.3331  holdout_nll=0.3312
+    epoch  5  train_nll=0.3328  holdout_nll=0.3313
+    epoch  6  train_nll=0.3326  holdout_nll=0.3313
+    epoch  7  train_nll=0.3324  holdout_nll=0.3312
+    epoch  8  train_nll=0.3323  holdout_nll=0.3309
+    epoch  9  train_nll=0.3322  holdout_nll=0.3311
+    epoch 10  train_nll=0.3322  holdout_nll=0.3307
+    epoch 11  train_nll=0.3321  holdout_nll=0.3306
+    epoch 12  train_nll=0.3321  holdout_nll=0.3309
+    epoch 13  train_nll=0.3321  holdout_nll=0.3306
+    epoch 14  train_nll=0.3322  holdout_nll=0.3351
+    epoch 15  train_nll=0.3343  holdout_nll=0.3314
+    epoch 16  train_nll=0.3329  holdout_nll=0.3312
+lstm_mean_s42  W=200  DR@1%=0.000 normals alarming=0.020 pre-exploit alarms=0.000 median s to detect=-
+
+Wrote results\lidds_lstm_ext\CVE-2019-5418\per_thread/results.md
+=== CVE-2019-5418 / per_thread: ok (results saved; exit code 3221226505 at shutdown) in 26.3 min ===
+
+=== CVE-2019-5418 (7.77 GB) / interleaved / 1 models ===
+CVE-2019-5418: train=210 cal=364 dev=188 test=388 (dev attacks=36, test attacks=84)
+fitting lstm_mean_s42 ...
+    epoch  1  train_nll=0.4593  holdout_nll=0.4305
+    epoch  2  train_nll=0.4333  holdout_nll=0.4258
+    epoch  3  train_nll=0.4297  holdout_nll=0.4230
+    epoch  4  train_nll=0.4279  holdout_nll=0.4223
+    epoch  5  train_nll=0.4267  holdout_nll=0.4212
+    epoch  6  train_nll=0.4259  holdout_nll=0.4201
