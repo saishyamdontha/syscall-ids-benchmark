@@ -1,0 +1,14 @@
+# Post-hoc extension, decided 2026-09-28 after the main run and BEFORE any LSTM result on these
+# scenarios: LSTM size budget raised from 5 GB to 8 GB (next 4 scenarios by size). Same settings.
+data_dir: data/raw/lidds
+out_dir: results/lidds_lstm_ext
+seed: 42
+fpr_targets: [0.01, 0.05]
+windows: [10, 20, 50, 100, 200]
+selection_metric: "0.01"
+tiebreak_metric: "0.05"
+modes: [per_thread, interleaved]
+lstm_max_zip_gb: 8.0
+ngram_models: []
+lstm_model: {type: lstm, emb: 64, hidden: 128, layers: 2, dropout: 0.2, chunk: 64, stride: 32,
+             max_epochs: 100, patience: 6, trace_agg: mean, seed: 42}
